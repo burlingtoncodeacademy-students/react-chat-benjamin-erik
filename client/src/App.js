@@ -10,7 +10,6 @@ function App() {
       {/* component for displaying messages */}
       <Display />
 
-      {/* component for submitting messages */}
     </div>
   );
 }

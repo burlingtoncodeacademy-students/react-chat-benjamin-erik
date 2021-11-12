@@ -1,6 +1,9 @@
 import React from "react";
 
-function Sidebar() {
+function Sidebar(props) {
+
+  // find a way for one of these buttons to trigger props.updateRoom
+
   return (
     <>
       <div id="sidebar-container">

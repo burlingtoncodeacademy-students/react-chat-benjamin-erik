@@ -4,9 +4,9 @@ const path = require("path");
 const mongoose = require("mongoose");
 const { stringify } = require("querystring");
 
-// ** change this connection to Atlas later **
 // connecting to database
-mongoose.connect("mongodb+srv://m001-student:m001-mongodb-basics@cluster0.kvif8.mongodb.net/chat?retryWrites=true&w=majority");
+mongoose.connect(process.env.URI)
+// mongoose.connect("mongodb+srv://m001-student:m001-mongodb-basics@cluster0.kvif8.mongodb.net/chat?retryWrites=true&w=majority");
 let connection = mongoose.connection;
 
 // error handling for mongoose
@@ -29,19 +29,21 @@ async function start() {
     date: Date,
     message: String,
     author: String,
+    room: String
   });
 
   // set up message model
   let Message = mongoose.model("Message", messageSchema);
 
   // set up route for submitting messages
-  app.post("/message", async (req, res) => {
+  app.post("/chat", async (req, res) => {
     // create new message
     const newMessage = new Message({
       date: Date(),
       // take data from form inputs
       message: req.body.message,
       author: req.body.author,
+      room: "main"
     });
     // save message in database
     await newMessage.save();
@@ -49,8 +51,6 @@ async function start() {
     // refresh page to avoid hanging
     res.redirect("/")
   });
-
-  
 
   // set up route to pull all messages
   app.get("/read", async (req, res) => {
