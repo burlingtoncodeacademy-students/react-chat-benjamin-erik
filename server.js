@@ -45,10 +45,35 @@ async function start() {
     });
     // save message in database
     await newMessage.save();
+
+    // refresh page to avoid hanging
+    res.redirect("/")
   });
+
+  
+
+  // set up route to pull all messages
+  app.get("/read", async (req, res) => {
+
+    // set up array in parent scope to hold message data
+    let postArray = [];
+
+    // getting cursor
+    let allPosts = await Message.find({});
+
+    // converting mongo info to json and pushing to new array
+    await allPosts.forEach((post) => {
+      postArray.push(post);
+    });
+
+    // send json obj of messages
+    res.send(postArray);
+  
+  });
+
 }
 
-// set up route to pull message from database, display on page
+
 
 app.listen(port, () => {
   console.log("listening on port: " + port);
