@@ -6,7 +6,7 @@ const { stringify } = require("querystring");
 
 // ** change this connection to Atlas later **
 // connecting to database
-mongoose.connect("mongodb://localhost:27017/chat-test");
+mongoose.connect("mongodb+srv://m001-student:m001-mongodb-basics@cluster0.kvif8.mongodb.net/chat?retryWrites=true&w=majority");
 let connection = mongoose.connection;
 
 // error handling for mongoose

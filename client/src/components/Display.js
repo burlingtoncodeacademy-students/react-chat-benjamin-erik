@@ -8,17 +8,23 @@ function Display() {
 
   const [posts, setPosts] = useState([]);
 
+  let counter = 0;
+
+  function count() {
+    setTimeout(() => {
+      counter++;
+    }, 10000);
+  }
+
   useEffect(() => {
-    console.log("one trigger");
+    // console.log("one trigger");
     // fire a fetch from a route to the database established in server file
-      fetch("/read")
-        .then((message) => message.json())
-        .then((res) => setPosts(res));
-  }, []);
+    fetch("/read")
+      .then((message) => message.json())
+      .then((res) => setPosts(res));
+  }, [count]);
 
   // also need to convert posts into format readable by react (currently an array of objects)
-
-  console.log(posts);
 
   return (
     <div id="display-container">
