@@ -1,2 +1,7 @@
-mongoose / express / react front end?
+TODO
 
+- benjamin: UI / design, date / message formatting
+
+- Erik: other rooms / server routes
+
+- Later: try to update messages without refreshing page

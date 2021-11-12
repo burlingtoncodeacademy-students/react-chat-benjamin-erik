@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, prevPosts } from "react";
 import Form from "./Form";
 import Sidebar from "./Sidebar";
 
@@ -11,26 +11,32 @@ function Display() {
   useEffect(() => {
     console.log("one trigger");
     // fire a fetch from a route to the database established in server file
-    fetch("/read")
-      .then((message) => message.json())
-      .then((res) => setPosts(res));
+      fetch("/read")
+        .then((message) => message.json())
+        .then((res) => setPosts(res));
   }, []);
 
-  
   // also need to convert posts into format readable by react (currently an array of objects)
 
   console.log(posts);
 
   return (
     <div id="display-container">
-      <p>{posts}</p>
-
       <div className="chat-header">
         <h1>Hello, Chat!</h1>
       </div>
       <div id="main-container">
         <Sidebar />
-        <div className="chat-container"></div>
+        <div className="chat-container">
+          <ul>
+            {posts.map((post) => (
+              <li>
+                Author: {post.author} Message: {post.message} Time: {post.date}
+              </li>
+              // console.log(post.message)
+            ))}
+          </ul>
+        </div>
       </div>
       <div className="chat-footer">
         <Form />
