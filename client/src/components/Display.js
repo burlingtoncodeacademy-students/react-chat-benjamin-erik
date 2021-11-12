@@ -8,21 +8,26 @@ function Display() {
 
   const [posts, setPosts] = useState([]);
 
-  let counter = 0;
 
-  function count() {
-    setTimeout(() => {
-      counter++;
-    }, 10000);
-  }
-
+  // useEffect will enable fetching from database on page load, one time
   useEffect(() => {
-    // console.log("one trigger");
+    console.log("one trigger");
     // fire a fetch from a route to the database established in server file
-    fetch("/read")
+    const apiCall = () => {
+      console.log("tick")
+
+      fetch("/read")
       .then((message) => message.json())
       .then((res) => setPosts(res));
-  }, [count]);
+
+      // call timing function to trigger again in 10 secs
+      setTimeout(apiCall, 10000)
+
+    }
+    // start timing function to display immediately on page load
+    setTimeout(apiCall, 0)
+    
+  }, []);
 
   // also need to convert posts into format readable by react (currently an array of objects)
 
