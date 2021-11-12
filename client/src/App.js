@@ -1,17 +1,15 @@
-import './App.css';
-import React from 'react'
-import Form from './components/Form'
+import "./App.css";
+import React from "react";
+import Form from "./components/Form";
+import Display from "./components/Display";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello, Chat!</h1>
-
       {/* component for displaying messages */}
-      {/* <Display /> */}
+      <Display />
 
       {/* component for submitting messages */}
-      <Form />
     </div>
   );
 }

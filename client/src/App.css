@@ -1,38 +1,100 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  overflow: hidden;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
 .App {
+  height: 100vh;
+  background: rgb(4, 79, 72);
+  background: linear-gradient(
+    0deg,
+    rgba(4, 79, 72, 1) 0%,
+    rgba(42, 117, 97, 1) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#display-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 70vw;
+  height: 85vh;
+  background-color: rgb(51, 51, 51, 0.2);
+  border-radius: 20px;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(51, 51, 51, 0.4);
+  border-radius: 20px 20px 0 0;
+}
+
+.chat-container {
+  height: 100%;
+  width: 100%;
+}
+
+#main-container {
+  display: flex;
+  height: 100%;
+}
+
+.chat-footer {
+  display: flex;
+  background-color: rgb(51, 51, 51, 0.4);
+  border-radius: 0 0 20px 20px;
+  height: 12vh;
+}
+
+#form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.sidebar-title {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#sidebar-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 13em;
+  background-color: rgb(51, 51, 51, 0.2);
 }
 
-.App-link {
-  color: #61dafb;
+.user-input {
+  width: 11em;
+  border-radius: 0.5em;
+  margin: 2em;
+  border: 2px solid #044f48;
+  filter: drop-shadow(2px 2px 2px black);
+  font-size: 1.5rem;
+  padding: 0.25em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.submit {
+  width: 5em;
+  border-radius: 0.5em;
+  background-color: #2a7561;
+  font-size: 2em;
+  font-weight: 800;
+  padding: 2px;
+  border: 2px solid #044f48;
+  filter: drop-shadow(2px 2px 2px black);
 }

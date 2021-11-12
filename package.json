@@ -2,10 +2,10 @@
   "name": "react-chat",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "nodemon",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "setup": "npm install && cd client && npm install"
   },
@@ -17,5 +17,8 @@
     "express": "^4.17.1",
     "mongodb": "^3.6.2",
     "mongoose": "^6.0.12"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
