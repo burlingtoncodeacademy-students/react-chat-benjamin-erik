@@ -137,6 +137,10 @@ li:last-child {
   background-color: rgb(51, 51, 51, 0.2);
 }
 
+.room-button {
+  margin-bottom: 1em;
+}
+
 .user-input {
   width: 11em;
   border-radius: 0.5em;
@@ -147,7 +151,8 @@ li:last-child {
   padding: 0.25em;
 }
 
-.submit {
+.submit,
+.room-button {
   width: 5em;
   border-radius: 0.5em;
   background-color: #2a7561;
@@ -167,21 +172,25 @@ li:last-child {
   }
 }
 
-@media screen and (max-width: 1425px) {
+@media screen and (max-width: 1375px) {
   .user-input {
     margin: 0.25em;
   }
 
   li {
-    max-width: 30em;
+    max-width: 35em;
   }
 }
 
-@media screen and (max-width: 1425px) {
+@media screen and (max-width: 1025px) {
   .user-input {
     width: 9em;
   }
   .submit {
     width: 3em;
+  }
+
+  .room-button {
+    width: 3.5em;
   }
 }

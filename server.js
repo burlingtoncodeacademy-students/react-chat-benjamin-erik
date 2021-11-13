@@ -39,6 +39,7 @@ ${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}
 let currentTime = `${date.getHours()}:${minuteCleanup(
   date.getMinutes()
 )}:${date.getSeconds()}`;
+
 async function start() {
   // set up message schema
   let messageSchema = new mongoose.Schema({
