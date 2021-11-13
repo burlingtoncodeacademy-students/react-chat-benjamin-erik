@@ -49,11 +49,11 @@ function Display() {
                 {post.author}
                 <br />
                 <br /> {post.message}
-                <span className="time">{post.date}</span>
-                {/* Room: {post.room} */}
+                <div className="timestamp">
+                  <div className="date">{post.date}</div>
+                  <div className="time">{post.time}</div>
+                </div>
               </li>
-
-              // console.log(post.message)
             ))}
           </ul>
         </div>

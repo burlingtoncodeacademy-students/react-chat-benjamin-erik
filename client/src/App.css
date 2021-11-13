@@ -84,11 +84,24 @@ li:last-child {
   animation: fade-in 2s;
 }
 
-.time {
-  position: relative;
-  left: 8em;
+.timestamp {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3em;
+  max-height: 2.5em;
+}
+
+.date {
   color: rgb(206, 206, 211, 0.4);
   min-width: 7em;
+  max-height: 1em;
+}
+
+.time {
+  color: rgb(206, 206, 211, 0.4);
+  min-width: 7em;
+  max-height: 1em;
+  margin-top: 0.25em;
 }
 
 #main-container {
@@ -162,8 +175,13 @@ li:last-child {
   li {
     max-width: 30em;
   }
+}
 
-  .time {
-    left: 8em;
+@media screen and (max-width: 1425px) {
+  .user-input {
+    width: 9em;
+  }
+  .submit {
+    width: 3em;
   }
 }

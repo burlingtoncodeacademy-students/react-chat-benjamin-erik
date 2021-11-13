@@ -21,25 +21,36 @@ app.use(express.static(staticDir));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+function minuteCleanup(minutes) {
+  if (minutes < 10) {
+    return (minutes = "0" + minutes);
+  } else {
+    return minutes;
+  }
+}
+
 start();
 
 //formatting date and setting to variable
 let date = new Date();
-let currentDate = `${date.getFullYear()}-${
-  date.getMonth() + 1
-}-${date.getDate()}`;
-
+let currentDate = `
+${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}
+`;
+let currentTime = `${date.getHours()}:${minuteCleanup(
+  date.getMinutes()
+)}:${date.getSeconds()}`;
 async function start() {
   // set up message schema
   let messageSchema = new mongoose.Schema({
     date: String,
+    time: String,
     message: String,
     author: String,
     room: String,
   });
 
   // create variable for current room id
-  let currentRoom = "main"
+  let currentRoom = "main";
 
   // set up message model
   let Message = mongoose.model("Message", messageSchema);
@@ -49,6 +60,7 @@ async function start() {
     // create new message
     const newMessage = new Message({
       date: currentDate,
+      time: currentTime,
       // take data from form inputs
       message: req.body.message,
       author: req.body.author,
@@ -67,7 +79,7 @@ async function start() {
     let postArray = [];
 
     // getting cursor
-    let allPosts = await Message.find({ "room": currentRoom });
+    let allPosts = await Message.find({ room: currentRoom });
 
     // converting mongo info to json and pushing to new array
     await allPosts.forEach((post) => {
@@ -80,9 +92,9 @@ async function start() {
 
   app.post("/room", async (req, res) => {
     // currentRoom variable = roomName
-    currentRoom = req.body.room
-    res.redirect("/")
-  })
+    currentRoom = req.body.room;
+    res.redirect("/");
+  });
 }
 
 app.listen(port, () => {
