@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const { stringify } = require("querystring");
 
 // connecting to database
-mongoose.connect(process.env.URI)
+mongoose.connect(process.env.URI);
 // mongoose.connect("mongodb+srv://m001-student:m001-mongodb-basics@cluster0.kvif8.mongodb.net/chat?retryWrites=true&w=majority");
 let connection = mongoose.connection;
 
@@ -23,13 +23,19 @@ app.use(express.urlencoded({ extended: true }));
 
 start();
 
+//formatting date and setting to variable
+let date = new Date();
+let currentDate = `${date.getFullYear()}-${
+  date.getMonth() + 1
+}-${date.getDate()}`;
+
 async function start() {
   // set up message schema
   let messageSchema = new mongoose.Schema({
-    date: Date,
+    date: String,
     message: String,
     author: String,
-    room: String
+    room: String,
   });
 
   // set up message model
@@ -39,22 +45,21 @@ async function start() {
   app.post("/chat", async (req, res) => {
     // create new message
     const newMessage = new Message({
-      date: Date(),
+      date: currentDate,
       // take data from form inputs
       message: req.body.message,
       author: req.body.author,
-      room: "main"
+      room: "main",
     });
     // save message in database
     await newMessage.save();
 
     // refresh page to avoid hanging
-    res.redirect("/")
+    res.redirect("/");
   });
 
   // set up route to pull all messages
   app.get("/read", async (req, res) => {
-
     // set up array in parent scope to hold message data
     let postArray = [];
 
@@ -68,12 +73,8 @@ async function start() {
 
     // send json obj of messages
     res.send(postArray);
-  
   });
-
 }
-
-
 
 app.listen(port, () => {
   console.log("listening on port: " + port);

@@ -43,10 +43,16 @@ body {
 }
 
 .chat-container {
+  display: flex;
+  flex-direction: column-reverse;
   max-height: 65vh;
   width: 100%;
   overflow: auto;
   min-height: min-content;
+}
+
+.chat-container::-webkit-scrollbar {
+  background-color: #044f48;
 }
 
 ul {
@@ -54,10 +60,13 @@ ul {
 }
 
 li {
-  height: 2em;
+  display: flex;
+  justify-content: space-between;
+  min-height: 2em;
+  max-width: 40em;
   background-color: rgb(109, 226, 187, 0.3);
   list-style-type: none;
-  margin: 0.5em 0.5em 0.5em 0;
+  margin: 0.5em 0.5em 0.5em 1em;
   padding: 0.5em;
   border-radius: 0.5em;
 }
@@ -68,10 +77,18 @@ li:nth-child(even) {
 
 li:nth-child(odd) {
   margin-right: 2em;
+  background-color: rgba(77, 163, 135, 0.3);
 }
 
 li:last-child {
   animation: fade-in 2s;
+}
+
+.time {
+  position: relative;
+  left: 8em;
+  color: rgb(206, 206, 211, 0.4);
+  min-width: 7em;
 }
 
 #main-container {
@@ -90,7 +107,9 @@ li:last-child {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   width: 100%;
+  max-height: 15em;
 }
 
 .sidebar-title {
@@ -132,5 +151,19 @@ li:last-child {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1425px) {
+  .user-input {
+    margin: 0.25em;
+  }
+
+  li {
+    max-width: 30em;
+  }
+
+  .time {
+    left: 8em;
   }
 }

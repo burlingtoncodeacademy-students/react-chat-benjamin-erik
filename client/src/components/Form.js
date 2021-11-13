@@ -1,7 +1,6 @@
 import React from "react";
 
 function Form(props) {
-
   // need state to store current room. get this from the nav
 
   // then send currentRoom state to server via the form
@@ -16,12 +15,14 @@ function Form(props) {
           name="author"
           type="text"
           placeholder="Author"
+          maxLength="100"
         />
         <input
           className="user-input"
           name="message"
           type="text"
           placeholder="Message"
+          maxLength="500"
         />
         <input className="submit" type="submit" value="Send" />
       </form>
