@@ -38,6 +38,9 @@ async function start() {
     room: String,
   });
 
+  // create variable for current room id
+  let currentRoom = "main"
+
   // set up message model
   let Message = mongoose.model("Message", messageSchema);
 
@@ -49,7 +52,7 @@ async function start() {
       // take data from form inputs
       message: req.body.message,
       author: req.body.author,
-      room: "main",
+      room: currentRoom,
     });
     // save message in database
     await newMessage.save();
@@ -64,7 +67,7 @@ async function start() {
     let postArray = [];
 
     // getting cursor
-    let allPosts = await Message.find({});
+    let allPosts = await Message.find({ "room": currentRoom });
 
     // converting mongo info to json and pushing to new array
     await allPosts.forEach((post) => {
@@ -74,6 +77,12 @@ async function start() {
     // send json obj of messages
     res.send(postArray);
   });
+
+  app.post("/room", async (req, res) => {
+    // currentRoom variable = roomName
+    currentRoom = req.body.room
+    res.redirect("/")
+  })
 }
 
 app.listen(port, () => {
