@@ -1,6 +1,6 @@
 import React from "react";
 
-function Sidebar(props) {
+function Sidebar() {
   // find a way for one of these buttons to trigger props.updateRoom
 
   return (
@@ -12,7 +12,7 @@ function Sidebar(props) {
             className="room-button"
             type="submit"
             name="room"
-            value="dogs"
+            value="Dogs"
           />
         </form>
         <form method="post" action="/room">
@@ -20,7 +20,7 @@ function Sidebar(props) {
             className="room-button"
             type="submit"
             name="room"
-            value="main"
+            value="Main"
           />
         </form>
         <form method="post" action="/room">
@@ -28,7 +28,7 @@ function Sidebar(props) {
             className="room-button"
             type="submit"
             name="room"
-            value="coding"
+            value="Coding"
           />
         </form>
       </div>

@@ -1,8 +1,9 @@
-import React, { useEffect, useState, prevPosts } from "react";
+import { PromiseProvider } from "mongoose";
+import React, { useEffect, useState } from "react";
 import Form from "./Form";
 import Sidebar from "./Sidebar";
 
-function Display() {
+function Display(props) {
   // ** the way this is set up, Display basically serves as App.js - remove that redundancy later **
 
   // this function needs a state called currentRoom
@@ -17,6 +18,9 @@ function Display() {
 
   const [posts, setPosts] = useState([]);
 
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   // useEffect will enable fetching from database on page load, one time
   useEffect(() => {
     console.log("one trigger");
@@ -38,7 +42,7 @@ function Display() {
   return (
     <div id="display-container">
       <div className="chat-header">
-        <h1>Welcome to the Main Chat!</h1>
+        <h1>Welcome to the React Chat!</h1>
       </div>
       <div id="main-container">
         <Sidebar updateRoom={updateRoom} />
@@ -52,6 +56,9 @@ function Display() {
                 <div className="timestamp">
                   <div className="date">{post.date}</div>
                   <div className="time">{post.time}</div>
+                  <div className="current-room">
+                    {capitalize(post.room)} Chat
+                  </div>
                 </div>
               </li>
             ))}

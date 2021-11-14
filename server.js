@@ -21,24 +21,32 @@ app.use(express.static(staticDir));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-function minuteCleanup(minutes) {
-  if (minutes < 10) {
-    return (minutes = "0" + minutes);
-  } else {
-    return minutes;
-  }
-}
-
 start();
 
-//formatting date and setting to variable
-let date = new Date();
-let currentDate = `
-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}
-`;
-let currentTime = `${date.getHours()}:${minuteCleanup(
-  date.getMinutes()
-)}:${date.getSeconds()}`;
+// variable declarations for date/time stamp
+let date;
+let currentDate;
+let currentTime;
+let seconds;
+let minutes;
+let hours;
+
+//function for adding zeros to beginning of seconds and minutes if < 10,
+// converting hours to 12hr from 24hr, and adding AM/PM accordingly
+function timeSanitizer() {
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (hours > 12) {
+    hours = hours - 12;
+    seconds = seconds + " PM";
+  } else {
+    seconds = seconds + " AM";
+  }
+}
 
 async function start() {
   // set up message schema
@@ -58,6 +66,17 @@ async function start() {
 
   // set up route for submitting messages
   app.post("/chat", async (req, res) => {
+    //updates date and time for new post. adds zeros if necessary
+    date = new Date();
+    seconds = date.getSeconds();
+    minutes = date.getMinutes();
+    hours = date.getHours();
+    timeSanitizer();
+    currentTime = `${hours}:${minutes}:${seconds}`;
+    currentDate = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}`;
+
     // create new message
     const newMessage = new Message({
       date: currentDate,

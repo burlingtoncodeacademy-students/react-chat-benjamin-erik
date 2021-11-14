@@ -1,17 +1,15 @@
+/* Global and root variable declarations */
 * {
   box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 :root {
   font-size: 16px;
 }
 
-body {
-  overflow: hidden;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
-
+/* Styling for App Component */
 .App {
   height: 100vh;
   background: rgb(4, 79, 72);
@@ -25,6 +23,7 @@ body {
   align-items: center;
 }
 
+/* Styling for main flex container */
 #display-container {
   display: flex;
   flex-direction: column;
@@ -55,6 +54,7 @@ body {
   background-color: #044f48;
 }
 
+/* Styling for all messages that appear in chat container */
 ul {
   padding: 0;
 }
@@ -97,7 +97,8 @@ li:last-child {
   max-height: 1em;
 }
 
-.time {
+.time,
+.current-room {
   color: rgb(206, 206, 211, 0.4);
   min-width: 7em;
   max-height: 1em;
@@ -109,6 +110,7 @@ li:last-child {
   height: 100%;
 }
 
+/* Styling for display footer */
 .chat-footer {
   display: flex;
   background-color: rgb(51, 51, 51, 0.4);
@@ -125,6 +127,17 @@ li:last-child {
   max-height: 15em;
 }
 
+.user-input {
+  width: 11em;
+  border-radius: 0.5em;
+  margin: 2em;
+  border: 2px solid #044f48;
+  filter: drop-shadow(2px 2px 2px black);
+  font-size: 1.5rem;
+  padding: 0.25em;
+}
+
+/* Styling for sidebar and contents */
 .sidebar-title {
   text-align: center;
 }
@@ -141,16 +154,6 @@ li:last-child {
   margin-bottom: 1em;
 }
 
-.user-input {
-  width: 11em;
-  border-radius: 0.5em;
-  margin: 2em;
-  border: 2px solid #044f48;
-  filter: drop-shadow(2px 2px 2px black);
-  font-size: 1.5rem;
-  padding: 0.25em;
-}
-
 .submit,
 .room-button {
   width: 5em;
@@ -163,6 +166,7 @@ li:last-child {
   filter: drop-shadow(2px 2px 2px black);
 }
 
+/* Animation for fade in of most recent message */
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -172,6 +176,7 @@ li:last-child {
   }
 }
 
+/* Media queries */
 @media screen and (max-width: 1375px) {
   .user-input {
     margin: 0.25em;
@@ -184,13 +189,13 @@ li:last-child {
 
 @media screen and (max-width: 1025px) {
   .user-input {
-    width: 9em;
+    width: 8em;
   }
   .submit {
     width: 3em;
   }
 
   .room-button {
-    width: 3.5em;
+    width: 4em;
   }
 }
