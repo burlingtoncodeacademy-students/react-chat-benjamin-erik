@@ -1,8 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const path = require("path");
 const mongoose = require("mongoose");
-const { stringify } = require("querystring");
 
 // connecting to database
 mongoose.connect(process.env.URI);
@@ -18,9 +16,11 @@ const app = express();
 const staticDir = process.env.DEV ? "./client/public" : "./client/build";
 
 app.use(express.static(staticDir));
+// middleware to allow express to parse json's (makes req.body work)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// call main async function
 start();
 
 // variable declarations for date/time stamp
@@ -48,6 +48,7 @@ function timeSanitizer() {
   }
 }
 
+// main function
 async function start() {
   // set up message schema
   let messageSchema = new mongoose.Schema({
@@ -58,8 +59,8 @@ async function start() {
     room: String,
   });
 
-  // create variable for current room id
-  let currentRoom = "main";
+  // create variable for current room id, initialize to main room
+  let currentRoom = "Main";
 
   // set up message model
   let Message = mongoose.model("Message", messageSchema);
@@ -71,6 +72,7 @@ async function start() {
     seconds = date.getSeconds();
     minutes = date.getMinutes();
     hours = date.getHours();
+    //function for adding zeros to beginning of seconds and minutes (see above)
     timeSanitizer();
     currentTime = `${hours}:${minutes}:${seconds}`;
     currentDate = `${date.getFullYear()}-${
@@ -84,6 +86,7 @@ async function start() {
       // take data from form inputs
       message: req.body.message,
       author: req.body.author,
+      // take room from currentRoom variable
       room: currentRoom,
     });
     // save message in database
@@ -110,8 +113,9 @@ async function start() {
     res.send(postArray);
   });
 
+  // route for changing chatroom (only one route needed for all rooms)
   app.post("/room", async (req, res) => {
-    // currentRoom variable = roomName
+    // set currentRoom to value of sidebar element input value
     currentRoom = req.body.room;
     res.redirect("/");
   });

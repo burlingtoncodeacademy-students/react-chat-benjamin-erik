@@ -1,12 +1,6 @@
 import React from "react";
 
-function Form(props) {
-  // need state to store current room. get this from the nav
-
-  // then send currentRoom state to server via the form
-
-  // need to find a way to send props.room to server
-
+function Form() {
   return (
     <div id="form-container">
       <form method="post" action="/chat">
