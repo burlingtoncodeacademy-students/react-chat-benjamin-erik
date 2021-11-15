@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 
 // connecting to database
 mongoose.connect(process.env.URI);
-// mongoose.connect("mongodb+srv://m001-student:m001-mongodb-basics@cluster0.kvif8.mongodb.net/chat?retryWrites=true&w=majority");
 let connection = mongoose.connection;
 
 // error handling for mongoose
